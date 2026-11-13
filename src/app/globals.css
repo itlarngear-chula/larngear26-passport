@@ -1,9 +1,203 @@
 @import "tailwindcss";
 
 /*
- * Map the next/font CSS variables set on <body> in layout.tsx.
- * Prompt is the default body font (Thai + Latin).
+ * Design tokens — Figma "Passport Larngear 2026" › Design System page.
+ * Tailwind CSS v4 CSS-first config. Keep all tokens here, not in pages.
+ * Names follow the Figma variables (lowercase set) so they map 1:1.
+ */
+
+@theme {
+  /* Colors › Background */
+  --color-background-400: #3f3f95;
+  --color-background-500: #1f2a6a;
+  --color-background-600: #093165;
+  --color-background-700: #132965;
+  --color-background-800: #081738;
+  /* 800 at 60% opacity, as the Figma swatch shows (overlay). */
+  --color-background-900: #08173899;
+
+  /* Colors › Plain */
+  --color-plain-lavender: #dbbcf5;
+  --color-plain-blush: #fef2fc;
+  --color-plain-cream: #feffed;
+  --color-plain-sky: #b3cee9;
+  --color-plain-pink-light: #fdd3eb;
+  --color-plain-pink: #fcacc9;
+  --color-plain-peach: #ffd8af;
+  --color-plain-mint: #cbf4ec;
+
+  /* Colors › Neon */
+  --color-neon-cyan: #8efdea;
+  --color-neon-navy: #07274d;
+  --color-neon-orange: #ffa54a;
+  --color-neon-blue: #2120d4;
+  --color-neon-magenta: #e27eb4;
+  --color-neon-yellow: #f9eb4c;
+
+  /* Colors › Base */
+  --color-base-white: #ffffff;
+  --color-base-black: #060714;
+  --color-base-muted: #94a3b8;
+
+  /* Colors › Status */
+  --color-status-success: #10b981;
+  --color-status-error: #f43f5e;
+}
+
+/*
+ * Fonts — map the next/font CSS variables set on <body> in layout.tsx.
+ * inline: utilities resolve the var at use site.
+ * Noto Sans Thai is the default body font (thai/main).
  */
 @theme inline {
-  --font-sans: var(--font-prompt), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-noto-sans-thai), ui-sans-serif, system-ui, sans-serif;
+  --font-th-decorative: var(--font-charmonman), ui-serif, Georgia, serif;
+  --font-en-display: var(--font-bodoni-moda), ui-serif, Georgia, serif;
+  --font-en-decorative: var(--font-alex-brush), cursive;
+}
+
+/*
+ * Typography — one utility per Figma text style.
+ * Each style is self-contained (family/weight/size/line-height/letter-spacing).
+ * Figma letter-spacing values are treated as px.
+ */
+
+/* Thai */
+@utility text-th-display {
+  font-family: var(--font-th-decorative);
+  font-weight: 700;
+  font-size: 2.5rem; /* 40px */
+  line-height: 1.2;
+  letter-spacing: 2px;
+}
+
+@utility text-th-accent {
+  font-family: var(--font-th-decorative);
+  font-weight: 400;
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+
+@utility text-th-h1 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.5;
+  letter-spacing: 2px;
+}
+
+@utility text-th-h2 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.5;
+  letter-spacing: 1.5px;
+}
+
+@utility text-th-h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+
+@utility text-th-h4 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+
+@utility text-body-lg {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1rem; /* 16px */
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+@utility text-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+@utility text-body-sm {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.75rem; /* 12px */
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+@utility text-input {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+@utility text-button-lg {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+/* Figma: "Button & Label" */
+@utility text-button {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+/* Figma: "Caption & Tag" */
+@utility text-caption {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.75rem; /* 12px */
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+/* English */
+@utility text-en-display {
+  font-family: var(--font-en-display);
+  font-weight: 700;
+  font-size: 2.5rem; /* 40px */
+  line-height: 1.2;
+  letter-spacing: 2px;
+}
+
+@utility text-en-accent {
+  font-family: var(--font-en-decorative);
+  font-weight: 400;
+  font-size: 2rem; /* 32px */
+  line-height: 1.2;
+  letter-spacing: 2px;
+}
+
+@utility text-en-h1 {
+  font-family: var(--font-en-display);
+  font-weight: 600;
+  font-size: 2rem; /* 32px */
+  line-height: 1.2;
+  letter-spacing: 1.5px;
+}
+
+@utility text-en-h2 {
+  font-family: var(--font-en-display);
+  font-weight: 600;
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.2;
+  letter-spacing: 1px;
 }
