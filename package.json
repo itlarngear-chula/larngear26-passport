@@ -20,9 +20,11 @@
     "*.{css,json,md,yml,yaml}": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "lucide-react": "^1.72.0",
     "next": "16.4.3",
     "react": "19.3.1",
-    "react-dom": "19.3.1"
+    "react-dom": "19.3.1",
+    "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
