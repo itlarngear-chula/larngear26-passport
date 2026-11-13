@@ -1,7 +1,9 @@
 "use client";
 
 import { ChevronLeft, Star } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/Button";
 import { IconButton } from "@/components/ui/IconButton";
 import { TextField } from "@/components/ui/TextField";
@@ -10,6 +12,10 @@ import { TextField } from "@/components/ui/TextField";
 export default function ComponentPreview() {
   const [username, setUsername] = useState("LG-Z0000");
   const [password, setPassword] = useState("");
+  const failing = useMutation({
+    mutationFn: () => Promise.reject(new Error("demo")),
+    meta: { errorMessage: "เข้าสู่ระบบไม่สำเร็จ ลองใหม่อีกครั้ง" },
+  });
 
   return (
     <main className="bg-base-white mx-auto flex w-full max-w-[402px] flex-col gap-8 px-6 py-8">
@@ -68,6 +74,19 @@ export default function ComponentPreview() {
           defaultValue="LG-9999"
           error="ไม่พบชื่อผู้ใช้"
         />
+      </section>
+
+      <section className="flex flex-col gap-4">
+        <h2 className="text-th-h2 text-background-900">Toast</h2>
+        <Button size="sm" onClick={() => toast.success("บันทึกแล้ว")}>
+          toast.success
+        </Button>
+        <Button size="sm" onClick={() => toast.error("มีบางอย่างผิดพลาด")}>
+          toast.error
+        </Button>
+        <Button size="sm" onClick={() => failing.mutate()}>
+          mutation meta.errorMessage
+        </Button>
       </section>
     </main>
   );

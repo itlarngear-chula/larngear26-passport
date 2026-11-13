@@ -20,10 +20,12 @@
     "*.{css,json,md,yml,yaml}": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.107.1",
     "lucide-react": "^1.72.0",
     "next": "16.4.3",
     "react": "19.3.1",
     "react-dom": "19.3.1",
+    "sonner": "^2.0.8",
     "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {

@@ -6,6 +6,7 @@ import {
   Charmonman,
   Noto_Sans_Thai,
 } from "next/font/google";
+import { Providers } from "@/components/providers/Providers";
 import "./globals.css";
 
 // Families from the Figma typography variables; see globals.css for styles.
@@ -52,7 +53,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={`${notoSansThai.variable} ${charmonman.variable} ${bodoniModa.variable} ${alexBrush.variable} flex min-h-full flex-col font-sans`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
